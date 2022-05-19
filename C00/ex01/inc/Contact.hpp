@@ -10,14 +10,11 @@ class Contact {
 	Contact(void);
 	~Contact(void);
 	
-	void		setInfos(void);
+	int			setInfos(void);
 	void		printInfos(void) const;
-
-
-	private :
-
 	std::string	_Infos[5];
 
+	private :
 	static const std::string	_Infos_type[5];
 };
 

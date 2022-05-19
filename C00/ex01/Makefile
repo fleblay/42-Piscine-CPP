@@ -1,9 +1,9 @@
 SRC_DIR		= ./src
-SRC_LIST	= Contact.cpp main.cpp
+SRC_LIST	= PhoneBook.cpp Contact.cpp main.cpp
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 HEADER_DIR	= ./inc
-HEADER_LIST	= Contact.hpp
+HEADER_LIST	= Contact.hpp PhoneBook.hpp
 HEADERS		= $(addprefix $(HEADER_DIR)/, $(HEADER_LIST))
 
 OBJ_DIR		= ./obj

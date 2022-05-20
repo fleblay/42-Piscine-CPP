@@ -9,7 +9,7 @@ HEADERS		= $(addprefix $(HEADER_DIR)/, $(HEADER_LIST))
 OBJ_DIR		= ./obj
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
 
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98# -g3 -fsanitize=address
 CPP			= c++
 
 NAME		= Nokia_3310_Contacts

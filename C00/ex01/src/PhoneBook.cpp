@@ -25,7 +25,7 @@ int	PhoneBook::addContact(void)
 	return (ret);
 }
 
-void	PhoneBook::printContactList(void)
+void	PhoneBook::printContactList(void) const
 {
 	int	i;
 	int	j;
@@ -42,17 +42,17 @@ void	PhoneBook::printContactList(void)
 		{
 			std::cout.width(0);
 			std::cout << "|";
-			if (this->_ContactArray[i]._Infos[j].size() > 10)
+			if (this->_ContactArray[i].getInfo(j).size() > 10)
 			{
 				k = 0;
 				while (k < 9)
-					std::cout << this->_ContactArray[i]._Infos[j].at(k++);
+					std::cout << this->_ContactArray[i].getInfo(j).at(k++);
 				std::cout << ".";
 			}
 			else
 			{
 				std::cout.width(10);
-				std::cout << this->_ContactArray[i]._Infos[j];
+				std::cout << this->_ContactArray[i].getInfo(j);
 			}
 			j++;
 		}
@@ -61,7 +61,7 @@ void	PhoneBook::printContactList(void)
 	}
 }
 
-int	PhoneBook::searchContact(void)
+int	PhoneBook::searchContact(void) const
 {
 	std::string	query ("");
 	PhoneBook::printContactList();
@@ -71,7 +71,8 @@ int	PhoneBook::searchContact(void)
 		std::cout << "The PhoneBook is empty !" << std::endl;
 		return (1);
 	}
-	while (query.size() != 1 || !isdigit(query.at(0)) || query.at(0) - 48 >= this->_ContactCount)
+	while (query.size() < 1 || !isdigit(query.at(0)) || query.at(0) - 48 >= this->_ContactCount
+							|| query.at(0) - 48 >= 8)
 	{
 		std::cout << "Please enter contact index of contact you wish to display : ";
 		std::getline(std::cin, query);
@@ -83,8 +84,6 @@ int	PhoneBook::searchContact(void)
 				std::cout << "Failure encountered" << std::endl;
 			return (0);
 		}
-		if (query.at(0) - 48 >= 8)
-			continue ;
 	}
 	this->_ContactArray[query.at(0) - 48].printInfos();
 	return (1);

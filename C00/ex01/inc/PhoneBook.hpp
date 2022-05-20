@@ -11,8 +11,8 @@ class PhoneBook {
 	~PhoneBook(void);
 
 	int		addContact(void);
-	int		searchContact(void);
-	void	printContactList(void);
+	int		searchContact(void) const;
+	void	printContactList(void) const;
 
 	private :
 

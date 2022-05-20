@@ -37,6 +37,11 @@ int	Contact::setInfos(void)
 	return (1);
 }
 
+std::string	Contact::getInfo(int index) const
+{
+	return (this->_Infos[index]);
+}
+
 void	Contact::printInfos(void) const
 {
 	int	i = 0;

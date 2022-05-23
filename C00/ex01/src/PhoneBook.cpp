@@ -71,7 +71,7 @@ int	PhoneBook::searchContact(void) const
 		std::cout << "The PhoneBook is empty !" << std::endl;
 		return (1);
 	}
-	while (query.size() < 1 || !isdigit(query.at(0)) || query.at(0) - 48 >= this->_ContactCount
+	while (query.size() != 1 || !isdigit(query.at(0)) || query.at(0) - 48 >= this->_ContactCount
 							|| query.at(0) - 48 >= 8)
 	{
 		std::cout << "Please enter contact index of contact you wish to display : ";

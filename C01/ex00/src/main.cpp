@@ -6,6 +6,7 @@ int	main(void)
 	Zombie	*zombieptr;
 
 	zombieptr = Zombie::newZombie("John");
+	Zombie::randomChump("Bobby-Joe");
 
 	zombie.announce();
 	zombieptr->announce();

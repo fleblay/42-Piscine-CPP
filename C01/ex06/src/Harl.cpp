@@ -3,7 +3,7 @@
 
 Harl::Harl(void) 
 {
-	std::cout << "Harl 2.0 Constructor Called" << std::endl;
+	//std::cout << "Harl 2.0 Constructor Called" << std::endl;
 	this->_comment[0] = &Harl::_debug;
 	this->_comment[1] = &Harl::_info;
 	this->_comment[2] = &Harl::_warning;
@@ -13,7 +13,7 @@ Harl::Harl(void)
 
 Harl::~Harl(void)
 {
-	std::cout << "Harl 2.0 Destructor Called" << std::endl;
+	//std::cout << "Harl 2.0 Destructor Called" << std::endl;
 	return ;
 }
 

@@ -3,6 +3,8 @@
 
 #include <string>
 
+enum {DEFAULT = 0, DEBUG, INFO, WARNING, ERROR};
+
 class Harl {
 
 	public	:

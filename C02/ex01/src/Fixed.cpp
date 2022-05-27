@@ -48,6 +48,19 @@ void	Fixed::setRawBits(int const raw)
 	return ;
 }
 
+float	Fixed::toFloat(void) const
+{
+	float	to_return = 0;
+
+	to_return = (float)this->_value / (1 << this->_decimals);
+	return (to_return);
+}
+
+int		Fixed::toInt(void) const
+{
+	return (this->_value >> this->_decimals);
+}
+
 Fixed &	Fixed::operator=(const Fixed &rhs)
 {
 	std::cout << "Copy assignement operator called" << std::endl;
@@ -56,3 +69,9 @@ Fixed &	Fixed::operator=(const Fixed &rhs)
 }
 
 const int	Fixed::_decimals = 8;
+
+std::ostream & operator<<(std::ostream &stream, const Fixed &rhs)
+{
+	stream << rhs.toFloat();
+	return stream;
+}

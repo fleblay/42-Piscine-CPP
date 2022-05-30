@@ -17,6 +17,11 @@ class Point{
 	const Fixed	&getY(void) const;
 
 	Point	&operator=(const Point &rhs);
+	bool	operator==(const Point &rhs) const;
+
+	bool			isAligned(const Point &a, const Point &b) const;
+	static float	area(const Point &a, const Point &b, const Point &c);
+	static bool		bsp(Point const a, Point const b, Point const c, Point const point);
 
 	private	:
 

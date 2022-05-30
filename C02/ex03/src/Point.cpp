@@ -47,6 +47,33 @@ Point	&Point::operator=(const Point &rhs)
 	return (*this);
 }
 
+bool	Point::operator==(const Point &rhs) const
+{
+	if (this->_x == rhs.getX() && this->_y == rhs.getY())
+		return (true);
+	return (false);
+}
+
+bool	Point::isAligned(const Point &a, const Point &b) const
+{
+	float	det;
+
+	det = (b.getX().toFloat() - a.getX().toFloat()) * (this->_y.toFloat() - a.getY().toFloat())
+		- (b.getY().toFloat() - a.getY().toFloat()) * (this->_x.toFloat() - a.getX().toFloat());
+
+	return (det == 0);
+}
+
+float	Point::area(const Point &a, const Point &b, const Point &c)
+{
+	float	area;
+
+	area = ((b.getX().toFloat() - a.getX().toFloat()) * (c.getY().toFloat() - a.getY().toFloat())
+		- (c.getX().toFloat() - a.getX().toFloat()) * (b.getY().toFloat() - a.getY().toFloat())) / 2;
+
+	return (area < 0 ? -area : area);
+}
+
 std::ostream	&operator<<(std::ostream & ostream, const Point &rhs)
 {
 	ostream << "(" << rhs.getX() << ":" << rhs.getY() << ")";

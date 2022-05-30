@@ -1,5 +1,5 @@
 SRC_DIR		= ./src
-SRC_LIST	= main.cpp Fixed.cpp Point.cpp
+SRC_LIST	= main.cpp Fixed.cpp Point.cpp bsp.cpp
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 HEADER_DIR	= ./inc

@@ -8,21 +8,45 @@ int	main(void)
 	Fixed	b(a);
 	Fixed	c(5);
 	Fixed	d(2.40f);
-	Fixed	e;
+	Fixed	e = c * d;
+	Fixed	f = c / Fixed(5);
+	Fixed	g = c - d;
+	Fixed	h = c + d;
 
-	e = c * d;
-	std::cout << "test 1" << std::endl << e << std::endl;
-	std::cout << "test 2" << std::endl << e++ << std::endl;
-	std::cout << "test 3" << std::endl << e << std::endl;
-	std::cout << "test 4" << std::endl << --e << std::endl;
-	std::cout << "test 5" << std::endl << e << std::endl;
-	std::cout << "test 6" << std::endl << e-- << std::endl;
-	std::cout << "test 7" << std::endl << e << std::endl;
+	std::cout << "e" << std::endl << e << std::endl;
+	std::cout << "e pre inc" << std::endl << ++e << std::endl;
+	std::cout << "e" << std::endl << e << std::endl;
+	std::cout << "e post inc" << std::endl << e++ << std::endl;
+	std::cout << "e" << std::endl << e << std::endl;
+	std::cout << "e pre dec" << std::endl << --e << std::endl;
+	std::cout << "e" << std::endl << e << std::endl;
+	std::cout << "e post dec" << std::endl << e-- << std::endl;
+	std::cout << "e" << std::endl << e << std::endl;
 
-	Fixed f = c / Fixed(5);
+	std::cout << "Fixed f = c / Fixed(5)" << std::endl;
 	std::cout << f << std::endl;
 
+	std::cout << "Min c et Fixed(6)" << std::endl;
 	std::cout << Fixed::min(c, Fixed(6)) << std::endl;
+
+	std::cout << "Max Fixed(10) et Fixed(6)" << std::endl;
+	std::cout << Fixed::max(Fixed(10), Fixed(6)) << std::endl;
+
+	std::cout << "g = c - d" << std::endl << g << std::endl;
+	std::cout << "h = c + d" << std::endl << h << std::endl;
+
+	std::cout << "a == b" << std::endl << (a == b) << std::endl;
+	std::cout << "a != b" << std::endl << (a != b) << std::endl;
+
+	std::cout << "c == Fixed(5)" << std::endl << (c == Fixed(5)) << std::endl;
+	std::cout << "c != Fixed(5)" << std::endl << (c != Fixed(5)) << std::endl;
+
+	std::cout << "c == d" << std::endl << (c == d) << std::endl;
+	std::cout << "c != d" << std::endl << (c != d) << std::endl;
+	std::cout << "c >= d" << std::endl << (c >= d) << std::endl;
+	std::cout << "c <= d" << std::endl << (c <= d) << std::endl;
+	std::cout << "c > d" << std::endl << (c > d) << std::endl;
+	std::cout << "c < d" << std::endl << (c < d) << std::endl;
 
 	return (0);
 }

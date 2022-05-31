@@ -1,19 +1,19 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap(void) : _Name("DefaultName"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap(void) : _Name("DefaultName"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0), _HitPointsInit(10)
 {
 	std::cout << "Default Constructor called" << std::endl;
 	return ;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap(const std::string &name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0), _HitPointsInit(10)
 {
 	std::cout << "Parametric Constructor called" << std::endl;
 	return ;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &src)
+ClapTrap::ClapTrap(const ClapTrap &src) : _HitPointsInit(src.getHitPointsInit())
 {
 	*this = src;
 }
@@ -44,6 +44,11 @@ unsigned int	ClapTrap::getAttackDamage(void) const
 	return (this->_AttackDamage);
 }
 
+unsigned int	ClapTrap::getHitPointsInit(void) const
+{
+	return (this->_HitPointsInit);
+}
+
 ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 {
 	this->_Name = rhs.getName();
@@ -53,8 +58,60 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 	return (*this);
 }
 
+
+bool	ClapTrap::canDoAction(const std::string &action_name) const
+{
+	if (this->_HitPoints == 0)
+	{
+		std::cout	<< "ClapTrap " << this->_Name
+					<< " cannot " << action_name << " because it is dead."
+					<< std::endl;
+		return (0);
+	}
+	if (this->_EnergyPoints == 0)
+	{
+		std::cout	<< "ClapTrap " << this->_Name
+					<< " cannot " << action_name << " because it has no energy."
+					<< std::endl;
+		return (0);
+	}
+	return (1);
+}
+
+
 void	ClapTrap::attack(const std::string &target)
 {
+	if (!this->canDoAction("attack"))
+		return ;
+	this->_EnergyPoints--;
+	std::cout	<< "ClapTrap " << this->_Name
+				<< " attacks " << target
+				<< ", causing " << this->_AttackDamage
+				<< " points of damage!" << std::endl;
+	return ;
+}
 
+void	ClapTrap::takeDamage(unsigned int amount)
+{
+	if (!this->canDoAction("take damage"))
+		return ;
+	amount < this->_HitPoints ? this->_HitPoints -= amount : this->_HitPoints = 0;
 
+	std::cout	<< "ClapTrap " << this->_Name
+				<< " takes " << amount << " points of damage!"
+				<< " It now has " << this->_HitPoints << "HP." << std::endl;
+	return ;
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	if (!this->canDoAction("repair itself"))
+		return ;
+	this->_EnergyPoints--;
+	amount + this->_HitPoints < this->_HitPointsInit ? this->_HitPoints += amount : this->_HitPoints = this->_HitPointsInit;
+
+	std::cout	<< "ClapTrap " << this->_Name
+				<< " heals " << amount << " HitPoints!"
+				<< " It now has " << this->_HitPoints << "HP." << std::endl;
+	return ;
 }

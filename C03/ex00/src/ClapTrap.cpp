@@ -13,8 +13,9 @@ ClapTrap::ClapTrap(const std::string &name) : _Name(name), _HitPoints(10), _Ener
 	return ;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &src) : _HitPointsInit(src.getHitPointsInit())
+ClapTrap::ClapTrap(const ClapTrap &src)
 {
+	std::cout << "Copy Constructor called" << std::endl;
 	*this = src;
 }
 
@@ -51,10 +52,12 @@ unsigned int	ClapTrap::getHitPointsInit(void) const
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 {
+	std::cout << "Assignation overload operator called" << std::endl;
 	this->_Name = rhs.getName();
 	this->_HitPoints = rhs.getHitPoints();
 	this->_EnergyPoints = rhs.getEnergyPoints();
 	this->_AttackDamage = rhs.getAttackDamage();
+	this->_HitPointsInit = rhs.getHitPointsInit();
 	return (*this);
 }
 

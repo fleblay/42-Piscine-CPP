@@ -18,6 +18,11 @@ class ClapTrap
 	unsigned int	getAttackDamage(void) const;
 	unsigned int	getHitPointsInit(void) const;
 
+	void			setHitPoints(unsigned int value);
+	void			setEnergyPoints(unsigned int value);
+	void			setAttackDamage(unsigned int value);
+	void			setHitPointsInit(unsigned int value);
+
 	ClapTrap &operator=(const ClapTrap &rhs);
 
 	bool	canDoAction(const std::string &action_name) const;
@@ -25,13 +30,13 @@ class ClapTrap
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 
-	private	:
+	protected	:
 
 	std::string			_Name;
 	unsigned int		_HitPoints;
 	unsigned int		_EnergyPoints;
 	unsigned int		_AttackDamage;
-	const unsigned int	_HitPointsInit;
+	unsigned int		_HitPointsInit;
 };
 
 #endif

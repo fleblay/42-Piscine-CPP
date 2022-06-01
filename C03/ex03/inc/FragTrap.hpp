@@ -7,7 +7,7 @@
 # define GREEN "\x1b[32m"
 # define RESET "\x1b[0m"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public	:
 
@@ -19,5 +19,11 @@ class FragTrap : public ClapTrap
 	FragTrap	&operator=(const FragTrap &rhs);
 
 	void	highFiveGuys(void);
+
+	protected	:
+
+	static unsigned	int	_FragTrapHitPoints;
+	static unsigned	int	_FragTrapEnergyPoints;
+	static unsigned	int	_FragTrapAttackDamage;
 };
 #endif

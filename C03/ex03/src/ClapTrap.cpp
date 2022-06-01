@@ -50,6 +50,11 @@ unsigned int	ClapTrap::getHitPointsInit(void) const
 	return (this->_HitPointsInit);
 }
 
+void			ClapTrap::setName(const std::string &name)
+{
+	this->_Name = name;
+	return ;
+}
 void			ClapTrap::setHitPoints(unsigned int value)
 {
 	this->_HitPoints = value;

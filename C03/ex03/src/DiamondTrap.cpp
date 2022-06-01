@@ -1,27 +1,26 @@
 #include "DiamondTrap.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 
-DiamondTrap::DiamondTrap(void) : ClapTrap()
+DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 {
 	std::cout << RED;
 	std::cout << "Default DiamondTrap Constructor called" << std::endl;
 	std::cout << RESET;
-	this->setHitPointsInit(100);
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+	this->setEnergyPoints(ScavTrap::_ScavTrapEnergyPoints);
+	this->_Name = ClapTrap::getName() + "_clap_name";
 	return ;
 }
 
-DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name)
+DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name), ScavTrap(), FragTrap()
 {
 	std::cout << RED;
 	std::cout << "Parametric DiamondTrap Constructor called" << std::endl;
 	std::cout << RESET;
-	this->setHitPointsInit(100);
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+	this->setEnergyPoints(ScavTrap::_ScavTrapEnergyPoints);
+	this->_Name = ClapTrap::getName() + "_clap_name";
 	return ;
 }
 
@@ -47,7 +46,8 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &rhs)
 	std::cout << RED;
 	std::cout << "DiamondTrap Assignation overload operator called" << std::endl;
 	std::cout << RESET;
-	this->_Name = rhs.getName();
+	this->setName(rhs.getName());
+	this->_Name = rhs._Name;
 	this->_HitPoints = rhs.getHitPoints();
 	this->_EnergyPoints = rhs.getEnergyPoints();
 	this->_AttackDamage = rhs.getAttackDamage();
@@ -57,6 +57,7 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &rhs)
 
 void	DiamondTrap::whoAmI(void)
 {
-	std::cout << this->_Name << std::endl;
+	std::cout	<< "My DiamondTrap name : " << this->_Name << std::endl
+				<< "My ClapTrap name : " << this->ClapTrap::getName() << std::endl;
 	return ;
 }

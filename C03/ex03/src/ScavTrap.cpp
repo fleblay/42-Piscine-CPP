@@ -1,4 +1,5 @@
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 #include <iostream>
 
 ScavTrap::ScavTrap(void) : ClapTrap()
@@ -77,3 +78,7 @@ void	ScavTrap::guardGate(void)
 				<< std::endl;
 	return ;
 }
+
+unsigned int	ScavTrap::_ScavTrapHitPoints = 100;
+unsigned int	ScavTrap::_ScavTrapEnergyPoints = 50;
+unsigned int	ScavTrap::_ScavTrapAttackDamage = 20;

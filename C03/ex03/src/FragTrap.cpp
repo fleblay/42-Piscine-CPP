@@ -1,4 +1,5 @@
 #include "FragTrap.hpp"
+#include "ClapTrap.hpp"
 #include <iostream>
 
 FragTrap::FragTrap(void) : ClapTrap()
@@ -88,3 +89,7 @@ void	FragTrap::highFiveGuys(void)
 	else
 		std::cout << "*SSSSSSSCCCCHLAAAACK SOUND*" << std::endl;
 }
+
+unsigned int	FragTrap::_FragTrapHitPoints = 100;
+unsigned int	FragTrap::_FragTrapEnergyPoints = 100;
+unsigned int	FragTrap::_FragTrapAttackDamage = 30;

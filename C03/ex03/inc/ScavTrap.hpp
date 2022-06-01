@@ -7,7 +7,7 @@
 # define ORANGE "\x1b[33m"
 # define RESET "\x1b[0m"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public	:
 
@@ -20,5 +20,11 @@ class ScavTrap : public ClapTrap
 
 	void	attack(const std::string &target);
 	void	guardGate(void);
+
+	protected	:
+
+	static unsigned	int	_ScavTrapHitPoints;
+	static unsigned	int	_ScavTrapEnergyPoints;
+	static unsigned	int	_ScavTrapAttackDamage;
 };
 #endif

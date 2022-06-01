@@ -75,5 +75,6 @@ void	ScavTrap::guardGate(void)
 	std::cout	<< "ScavTrap " << this->_Name
 				<< " has entered Gate Keeper mode."
 				<< std::endl;
+	std::cout << RESET;
 	return ;
 }

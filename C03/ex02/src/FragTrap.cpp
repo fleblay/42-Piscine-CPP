@@ -60,6 +60,7 @@ void	FragTrap::highFiveGuys(void)
 	std::string	answer;
 	int	remaining_tries = 3;
 
+	std::cout << GREEN;
 	std::cout << "Can I get a high five dude ? (y/n)" << std::endl;
 	std::getline(std::cin, answer);
 	if (!std::cin.good())
@@ -68,6 +69,7 @@ void	FragTrap::highFiveGuys(void)
 			std::cout << "EOF encountered" << std::endl;
 		else
 			std::cout << "Failure encountered" << std::endl;
+		std::cout << RESET;
 		return ;
 	}
 	while (--remaining_tries && answer.compare("y") && answer.compare("yes"))
@@ -80,6 +82,7 @@ void	FragTrap::highFiveGuys(void)
 				std::cout << "EOF encountered" << std::endl;
 			else
 				std::cout << "Failure encountered" << std::endl;
+			std::cout << RESET;
 			return ;
 		}
 	}
@@ -87,4 +90,6 @@ void	FragTrap::highFiveGuys(void)
 		std::cout << "You ain't fun dude :(" << std::endl;
 	else
 		std::cout << "*SSSSSSSCCCCHLAAAACK SOUND*" << std::endl;
+	std::cout << RESET;
+	return ;
 }

@@ -10,7 +10,7 @@ class Animal
 	Animal(void);
 	Animal(const std::string &type);
 	Animal(const Animal &src);
-	~Animal(void);
+	virtual ~Animal(void);
 
 	const std::string	&getType(void)const;
 	

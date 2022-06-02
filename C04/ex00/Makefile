@@ -1,9 +1,9 @@
 SRC_DIR		= ./src
-SRC_LIST	= main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC_LIST	= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 HEADER_DIR	= ./inc
-HEADER_LIST	= Animal.hpp Dog.hpp Cat.hpp
+HEADER_LIST	= Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 HEADERS		= $(addprefix $(HEADER_DIR)/, $(HEADER_LIST))
 
 OBJ_DIR		= ./obj

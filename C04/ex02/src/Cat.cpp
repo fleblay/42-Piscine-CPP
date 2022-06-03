@@ -33,7 +33,7 @@ Cat::~Cat(void)
 Cat &Cat::operator=(const Cat &rhs)
 {
 	this->_type = rhs._type;
-	this->_Brain = rhs._Brain;
+	*this->_Brain = *rhs._Brain;
 	return (*this);
 }
 

@@ -53,6 +53,6 @@ void	Brain::setIdeas(const std::string &thought)
 Brain &Brain::operator=(const Brain &rhs)
 {
 	for (std::size_t i = 0; i < 100; i++)
-		this->_ideas[i] = rhs._ideas[i];
+		this->_ideas[i] = rhs._ideas[i].substr(0);
 	return (*this);
 }

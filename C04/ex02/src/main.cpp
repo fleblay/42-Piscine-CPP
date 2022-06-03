@@ -15,11 +15,15 @@ int main(void)
 
 	const Animal	*j = new Dog();
 	const Animal	*i = new Cat();
+	Dog				Doggie(Odie);
+	Cat				Cathou(Garfield);
 
 	std::cout << "-----------------START OF DELETION-------------------" << std::endl;
 
 	delete j;
 	delete i;
+
+	std::cout << "Proof deep copy : " << Doggie.getIdea(9) << std::endl;
 
 	std::cout << "-----------------END OF DELETION-------------------" << std::endl;
 

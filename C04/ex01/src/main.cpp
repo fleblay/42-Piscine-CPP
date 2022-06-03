@@ -15,6 +15,8 @@ int main(void)
 
 	const Animal	*j = new Dog();
 	const Animal	*i = new Cat();
+	Dog				Doggie(Odie);
+	Cat				Cathou(Garfield);
 
 	std::cout << "-----------------START OF DELETION-------------------" << std::endl;
 
@@ -34,6 +36,8 @@ int main(void)
 		delete tab[i];
 	
 	std::cout << "-----------------END OF TAB DELETION-------------------" << std::endl;
+
+	Animal	animal;
 
 	return (0);
 }

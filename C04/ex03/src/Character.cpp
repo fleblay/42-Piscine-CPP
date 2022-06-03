@@ -1,5 +1,8 @@
 #include "Character.hpp"
 #include "ICharacter.hpp"
+#include "Colors.hpp"
+#include "AMateria.hpp"
+#include <iostream>
 
 Character::Character(void) : _name("DefaultCharacterName")
 {
@@ -21,7 +24,7 @@ Character::Character(const std::string &name) : _name(name)
 	return ;
 }
 
-Character::Character(Character &src) 
+Character::Character(const Character &src) 
 {
 	std::cout << ORANGE"Copy Character Constructor called"RESET << std::endl;
 	*this = src;
@@ -32,7 +35,10 @@ Character::~Character(void)
 {
 	std::cout << ORANGE"Default Character Destructor called"RESET << std::endl;
 	for (std::size_t i = 0; i < 4 ; i++)
+	{
+		std::cout << i << std::endl;
 		delete this->_inventory[i];
+	}
 	for (std::size_t i = 0; i < 256 ; i++)
 		delete this->_discarded[i];
 	return ;
@@ -41,7 +47,7 @@ Character::~Character(void)
 Character	&Character::operator=(const Character &rhs)
 {
 	std::cout << ORANGE"Overload Character assign operator called"RESET << std::endl;
-	this->_name = rhs.name;
+	this->_name = rhs._name;
 	for (std::size_t i = 0; i < 4 ; i++)
 	{
 		delete this->_inventory[i];
@@ -64,9 +70,9 @@ void				Character::equip(AMateria *m)
 {
 	std::size_t i = 0;
 
-	while (i < 4 && !this->_inventory[i])
+	while (i < 4 && this->_inventory[i])
 		i++;
-	if (i = 4)
+	if (i == 4)
 	{
 		std::cout	<< "Cannot equip new materia, inventory is full for "
 					<< this->getName() << "." << std::endl;	
@@ -78,6 +84,8 @@ void				Character::equip(AMateria *m)
 
 void				Character::unequip(int idx)
 {
+	std::size_t i = 0;
+
 	if (idx > 3 || idx < 0)
 	{
 		std::cout	<< "Out of range index for unequip for " << this->getName()
@@ -92,7 +100,7 @@ void				Character::unequip(int idx)
 	}
 	while (i < 256 && !this->_discarded[i])
 		i++;
-	if (i = 256)
+	if (i == 256)
 	{
 		std::cout	<< "Cannot properly unequip materia, discarded is full for "
 					<< this->getName() << ". You may have leaks now" << std::endl;	
@@ -113,7 +121,7 @@ void				Character::use(int idx, ICharacter &target)
 	if (!this->_inventory[idx])
 	{
 		std::cout	<< "No materia to use for " << this->getName()
-					<< "at slot " << idx << " ."  << std::endl;
+					<< " at slot " << idx << " ."  << std::endl;
 		return ;
 	}
 	this->_inventory[idx]->use(target);

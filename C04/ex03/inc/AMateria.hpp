@@ -1,7 +1,9 @@
 #ifndef AMATERIA_CLASS_H
 # define AMATERIA_CLASS_H
 
-#include <string>
+# include <string>
+
+class ICharacter;
 
 class AMateria
 {

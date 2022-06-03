@@ -1,15 +1,15 @@
 SRC_DIR		= ./src
-SRC_LIST	= main.cpp
+SRC_LIST	= AMateria.cpp Character.cpp Ice.cpp MateriaSource.cpp main.cpp
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 HEADER_DIR	= ./inc
-HEADER_LIST	= 
+HEADER_LIST	= AMateria.hpp Character.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp Colors.hpp
 HEADERS		= $(addprefix $(HEADER_DIR)/, $(HEADER_LIST))
 
 OBJ_DIR		= ./obj
 OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
 
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3
 CPP			= c++
 
 NAME		= test

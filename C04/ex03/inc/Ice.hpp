@@ -1,9 +1,10 @@
 #ifndef ICE_H
 # define ICE_H
 
+# include <string>
 # include "AMateria.hpp"
 
-#include <string>
+class ICharacter;
 
 class Ice : public AMateria
 {

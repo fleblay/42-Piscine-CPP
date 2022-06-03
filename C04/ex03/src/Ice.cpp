@@ -1,5 +1,8 @@
 #include "Ice.hpp"
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
+#include "Colors.hpp"
+#include <iostream>
 
 Ice::Ice(void) : AMateria("ice")
 {
@@ -7,7 +10,7 @@ Ice::Ice(void) : AMateria("ice")
 	return ;
 }
 
-Ice::Ice(Ice &src) : AMateria("ice")
+Ice::Ice(const Ice &src) : AMateria("ice")
 {
 	std::cout << RED"Copy Ice Constructor called"RESET << std::endl;
 	*this = src;
@@ -23,7 +26,7 @@ Ice::~Ice(void)
 Ice	&Ice::operator=(const Ice &rhs)
 {
 	std::cout << RED"Overload Ice assign operator called"RESET << std::endl;
-	this->_type = rhs.type;
+	this->_type = rhs._type;
 	return (*this);
 }
 

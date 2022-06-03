@@ -1,10 +1,11 @@
 #ifndef CHARACTER_CLASS_H
 # define CHARACTER_CLASS_H
 
-# include "ICharacter.hpp"
-# include "AMateria.hpp"
-
 #include <string>
+#include "ICharacter.hpp"
+
+class ICharacter;
+class AMateria;
 
 class Character : public ICharacter
 {
@@ -15,7 +16,7 @@ class Character : public ICharacter
 	Character(const Character &src);
 	virtual ~Character(void);
 
-	Character			&operator=(const Character &rhs);
+	Character	&operator=(const Character &rhs);
 
 	virtual const std::string	&getName() const;
 	virtual void				equip(AMateria *m);

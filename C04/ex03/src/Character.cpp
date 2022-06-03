@@ -35,10 +35,7 @@ Character::~Character(void)
 {
 	std::cout << ORANGE"Default Character Destructor called"RESET << std::endl;
 	for (std::size_t i = 0; i < 4 ; i++)
-	{
-		std::cout << i << std::endl;
 		delete this->_inventory[i];
-	}
 	for (std::size_t i = 0; i < 256 ; i++)
 		delete this->_discarded[i];
 	return ;
@@ -51,12 +48,14 @@ Character	&Character::operator=(const Character &rhs)
 	for (std::size_t i = 0; i < 4 ; i++)
 	{
 		delete this->_inventory[i];
-		this->_inventory[i] = rhs._inventory[i];
+		if (rhs._inventory[i])
+			this->_inventory[i] = rhs._inventory[i]->clone();
 	}
 	for (std::size_t i = 0; i < 256 ; i++)
 	{
 		delete this->_discarded[i];
-		this->_discarded[i] = rhs._discarded[i];
+		if (rhs._inventory[i])
+			this->_discarded[i] = rhs._discarded[i]->clone();
 	}
 	return (*this);
 }
@@ -78,7 +77,12 @@ void				Character::equip(AMateria *m)
 					<< this->getName() << "." << std::endl;	
 		return ;
 	}
-	this->_inventory[i] = m;
+	if (!m)
+	{
+		std::cout	<< "Cannot equip new materia, Materia is NULL" << std::endl;
+		return ;
+	}
+	this->_inventory[i] = m->clone();
 	return ;
 }
 
@@ -98,7 +102,7 @@ void				Character::unequip(int idx)
 					<< "at slot " << idx << " ."  << std::endl;
 		return ;
 	}
-	while (i < 256 && !this->_discarded[i])
+	while (i < 256 && this->_discarded[i])
 		i++;
 	if (i == 256)
 	{

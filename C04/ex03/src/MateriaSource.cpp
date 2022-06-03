@@ -50,6 +50,11 @@ void				MateriaSource::learnMateria(AMateria *m)
 					<< std::endl;	
 		return ;
 	}
+	if (!m)
+	{
+		std::cout	<< "Cannot learn new materia, Materia is NULL" << std::endl;
+		return ;
+	}
 	this->_inventory[i] = m->clone();
 	return ;
 }

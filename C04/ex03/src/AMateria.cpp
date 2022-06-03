@@ -42,9 +42,5 @@ const std::string	&AMateria::getType(void) const
 void	AMateria::use(ICharacter &target)
 {
 	std::cout << "* No effect on " << target.getName() << " *" << std::endl;
-	/*
-	else if (this->_type == "cure")
-		std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
-	*/
 	return ;	
 }

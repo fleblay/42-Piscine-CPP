@@ -1,9 +1,10 @@
 SRC_DIR		= ./src
-SRC_LIST	= AMateria.cpp Character.cpp Ice.cpp MateriaSource.cpp main.cpp
+SRC_LIST	= AMateria.cpp Character.cpp Ice.cpp MateriaSource.cpp main.cpp Cure.cpp
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 HEADER_DIR	= ./inc
-HEADER_LIST	= AMateria.hpp Character.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp Colors.hpp
+HEADER_LIST	= AMateria.hpp Character.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp\
+			MateriaSource.hpp Colors.hpp Cure.hpp
 HEADERS		= $(addprefix $(HEADER_DIR)/, $(HEADER_LIST))
 
 OBJ_DIR		= ./obj

@@ -10,6 +10,7 @@ class Bureaucrat
 	public	:
 
 	Bureaucrat(void);
+	Bureaucrat(const std::string &name, const int &grade);
 	Bureaucrat(const Bureaucrat &src);
 	virtual ~Bureaucrat(void);
 
@@ -18,13 +19,27 @@ class Bureaucrat
 	const std::string	&getName(void) const;
 	const int			&getGrade(void) const;
 	void				setGrade(const int &NewGrade);
+	void				incrementGrade(const int &value);
+	void				decrementGrade(const int &value);
 
-	class GradetooHighException : public std::exception
+	class GradeTooHighException : public std::exception
 	{
 		public	:
-		virtual const std::
-
+		virtual const char	*what(void) const throw()
+		{
+			return ("Cannot perform operation : Bureaucrat grade will be to high");
+		}
 	};
+
+	class GradeTooLowException : public std::exception
+	{
+		public	:
+		virtual const char	*what(void) const throw()
+		{
+			return ("Cannot perform operation : Bureaucrat grade will be to low");
+		}
+	};
+	
 	
 	private	:
 

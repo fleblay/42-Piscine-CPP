@@ -7,7 +7,18 @@ Bureaucrat::Bureaucrat(void) : _name("DefaultBureaucratName"), _grade(150)
 	return ;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src.getName())
+Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : _name(name)
+{
+	std::cout << "Bureaucrat Parametric Constructor called" << std::endl;
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if (grade < 1)
+		throw GradeTooHighException();
+	this->setGrade(grade);
+	return ;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &src)
 {
 	std::cout << "Bureaucrat Copy Constructor called" << std::endl;
 	*this = src;
@@ -40,8 +51,24 @@ const int			&Bureaucrat::getGrade(void) const
 
 void				Bureaucrat::setGrade(const int	&NewGrade)
 {
+	if (NewGrade > 150)
+		throw GradeTooLowException();
+	else if (NewGrade < 1)
+		throw GradeTooHighException();
 	this->_grade = NewGrade;
 	return ;
+}
+
+void				Bureaucrat::incrementGrade(const int &value)
+{
+	this->setGrade(this->getGrade() - value);
+	std::cout << "Successfull Grade increment" << std::endl;
+}
+
+void				Bureaucrat::decrementGrade(const int &value)
+{
+	this->setGrade(this->getGrade() + value);
+	std::cout << "Successfull Grade decrement" << std::endl;
 }
 
 std::ostream		&operator<<(std::ostream &ostream, const Bureaucrat &rhs)

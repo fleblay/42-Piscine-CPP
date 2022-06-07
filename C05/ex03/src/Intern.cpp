@@ -56,5 +56,6 @@ Form	*Intern::makeForm(const std::string &formRequest, const std::string &formTa
 		if (i !=j)
 			delete availableForms[j];
 	}
+	std::cout << "Intern creates " << formRequest << " form." << std::endl;
 	return (ret);
 }

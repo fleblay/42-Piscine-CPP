@@ -76,11 +76,8 @@ void				Bureaucrat::signForm(Form &form)
 {
 	try
 	{
-		if(form.beSigned(*this))
-			std::cout << this->_name << " signed " << form.getName() << std::endl;
-		else
-			std::cout << this->_name << " couldn't sign " << form.getName()
-			<< " because form is already signed" << std::endl;	
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}
 	catch (std::exception &e)
 	{

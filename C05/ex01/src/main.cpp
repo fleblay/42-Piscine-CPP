@@ -63,6 +63,7 @@ int	main(void)
 	catch (std::exception &e)
 	{
 		std::cout << "error trying to sign form" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try
@@ -74,6 +75,7 @@ int	main(void)
 	catch (std::exception &e)
 	{
 		std::cout << "error trying to sign form" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }

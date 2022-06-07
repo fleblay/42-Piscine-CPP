@@ -1,11 +1,11 @@
 SRC_DIR		= ./src
 SRC_LIST	= Bureaucrat.cpp main.cpp Form.cpp ShrubberyCreationForm.cpp\
-			RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+			RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 HEADER_DIR	= ./inc
 HEADER_LIST	= Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp\
-			RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+			RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
 HEADERS		= $(addprefix $(HEADER_DIR)/, $(HEADER_LIST))
 
 OBJ_DIR		= ./obj

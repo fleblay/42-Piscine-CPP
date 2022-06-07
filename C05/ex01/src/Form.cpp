@@ -66,14 +66,12 @@ const int			&Form::getGradeToBeExecuted(void) const
 	return (this->_gradeToBeExecuted);
 }
 
-bool				Form::beSigned(const Bureaucrat &bureaucrat)
+void			Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() > this->_gradeToBeSigned)
 		throw GradeTooLowException();
-	if (this->_signed)
-		return (0);
 	this->_signed = 1;
-	return (1);
+	return ;
 }
 
 const char			*Form::GradeTooHighException::what(void) const throw()

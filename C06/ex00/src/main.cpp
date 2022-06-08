@@ -32,7 +32,7 @@ int	main(int ac, char *av[])
 								+ (minus_position != std::string::npos)
 								+ (dot_position != std::string::npos)
 								+ (f_position != std::string::npos);
-	//fx to check que des chars ou que des digits	
+	//fx to check que des char ou les valeurs speciales des floats ou que des digits	
 	if (arg_len == 0)
 	{
 		std::cout << "Input is empty!" << std::endl;

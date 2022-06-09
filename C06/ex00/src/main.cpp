@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <cctype>
 #include <string>
+#include <cerrno>
 
 # define ERROR 0
 # define CHAR 1
@@ -100,16 +102,44 @@ void	display(int type, char *arg)
 	float	Float = 0;
 	double	Double = 0;
 
-	if (type == FLOAT)
+	if (type == INT)
 	{
+		Int = strtol(arg, NULL, 10);
+		if (errno == ERANGE)
+		{
+			std::cout << "Overflow or Underflow detected" << std::endl;
+			return ;
+		}
+		Char = static_cast<char>(Int);
+		Float = static_cast<float>(Int);
+		Double = static_cast<double>(Int);
+	}
+	else if (type == DOUBLE)
+	{
+		//check overflow
+		Double = strtod(arg, NULL);
+		Char = static_cast<char>(Double);
+		Float = static_cast<float>(Double);
+		Int = static_cast<int>(Double);
+	}
+	else if (type == FLOAT)
+	{
+		//check overflow
 		Float = strtof(arg, NULL);
 		Char = static_cast<char>(Float);
 		Double = static_cast<double>(Float);
 		Int = static_cast<int>(Float);
 	}
+	else if (type == CHAR)
+	{
+		Char = arg[0];
+		Float = static_cast<float>(Char);
+		Double = static_cast<double>(Char);
+		Int = static_cast<int>(Char);
+	}
 	std::cout	<< "char: '" << Char << "'" << std::endl
 				<< "int: " << Int << std::endl
-				<< "float: " << Float << std::endl
+				<< "float: " << std::fixed << std::setprecision(1) << Float << "f" << std::endl
 				<< "double: " << Double << std::endl;
 }
 
@@ -124,9 +154,6 @@ int	main(int ac, char *av[])
 	if (type == ERROR)
 		return (1);
 	else
-	{
-		std::cout << "make conversion" << std::endl;
 		display(type, av[1]);
-	}
 	return (0);
 }

@@ -4,6 +4,7 @@
 #include <cctype>
 #include <string>
 #include <cerrno>
+#include <limits.h>
 
 # define ERROR 0
 # define CHAR 1
@@ -97,20 +98,22 @@ int	get_type(char *arg)
 
 void	display(int type, char *arg)
 {
-	char	Char = 0;
-	int		Int = 0;
-	float	Float = 0;
-	double	Double = 0;
+	char		Char = 0;
+	int			Int = 0;
+	long int	LongInt = 0;
+	float		Float = 0;
+	double		Double = 0;
 
 	if (type == INT)
 	{
-		Int = strtol(arg, NULL, 10);
-		if (errno == ERANGE)
+		LongInt = strtol(arg, NULL, 10);
+		if (errno == ERANGE || LongInt > INT_MAX || LongInt < INT_MIN)
 		{
 			std::cout << "Overflow or Underflow detected" << std::endl;
 			return ;
 		}
-		Char = static_cast<char>(Int);
+		Int = static_cast<int>(LongInt);
+		Char = (isprint(Int)) ? static_cast<char>(Int) : 0;
 		Float = static_cast<float>(Int);
 		Double = static_cast<double>(Int);
 	}
@@ -137,8 +140,11 @@ void	display(int type, char *arg)
 		Double = static_cast<double>(Char);
 		Int = static_cast<int>(Char);
 	}
-	std::cout	<< "char: '" << Char << "'" << std::endl
-				<< "int: " << Int << std::endl
+	if (Char != 0)
+		std::cout	<< "char: '" << Char << "'" << std::endl;
+	else
+		std::cout	<< "Non displayable" << std::endl;
+	std::cout	<< "int: " << Int << std::endl
 				<< "float: " << std::fixed << std::setprecision(1) << Float << "f" << std::endl
 				<< "double: " << Double << std::endl;
 }
@@ -150,6 +156,8 @@ int	main(int ac, char *av[])
 		std::cout << "Wrong arg count!" << std::endl;
 		return (1);
 	}
+	std::cout << "size of long int : " << sizeof(long int) << std::endl;
+	std::cout << "size of int : " << sizeof(int) << std::endl;
 	int	type = get_type(av[1]);
 	if (type == ERROR)
 		return (1);

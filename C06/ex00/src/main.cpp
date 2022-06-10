@@ -165,6 +165,10 @@ void	display(int type, char *arg)
 				|| Float > static_cast<float>(INT_MAX)
 				|| Float < static_cast<float>(INT_MIN))
 				Int_ov_underflow = 1;
+			// for overflow close to int max or underflow close int min
+			if (static_cast<long int>(Float) > INT_MAX
+				||static_cast<long int>(Float) < INT_MIN)
+				Int_ov_underflow = 1;
 		}
 		Char = static_cast<char>(Float);
 		Double = static_cast<double>(Float);

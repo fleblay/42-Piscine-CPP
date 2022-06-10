@@ -98,54 +98,105 @@ int	get_type(char *arg)
 
 void	display(int type, char *arg)
 {
-	char		Char = 0;
-	int			Int = 0;
-	long int	LongInt = 0;
-	float		Float = 0;
-	double		Double = 0;
+	char		Char;
+	int			Int;
+	long int	LongInt;
+	float		Float;
+	double		Double;
+	int			Int_ov_underflow = 0;
+	int			Char_ov_underflow = 0;
+	std::string	str_arg(arg);
 
 	if (type == INT)
 	{
-		LongInt = strtol(arg, NULL, 10);
-		if (errno == ERANGE || LongInt > INT_MAX || LongInt < INT_MIN)
+		LongInt = strtol(str_arg.c_str(), NULL, 10);
+		if (errno == ERANGE
+			|| LongInt > static_cast<long int>(INT_MAX)
+			|| LongInt < static_cast<long int>(INT_MIN))
 		{
 			std::cout << "Overflow or Underflow detected" << std::endl;
 			return ;
 		}
 		Int = static_cast<int>(LongInt);
-		Char = (isprint(Int)) ? static_cast<char>(Int) : 0;
+		if (Int > static_cast<int>(CHAR_MAX)
+			|| Int < static_cast<int>(CHAR_MIN))
+			Char_ov_underflow = 1;
+		else
+			Char = static_cast<char>(Int);
 		Float = static_cast<float>(Int);
 		Double = static_cast<double>(Int);
 	}
 	else if (type == DOUBLE)
 	{
-		//check overflow
-		Double = strtod(arg, NULL);
+		Double = strtod(str_arg.c_str(), NULL);
+		if (str_arg == "-inf" || str_arg == "+inf" || str_arg == "nan")
+		{
+			Int_ov_underflow = 2;
+			Char_ov_underflow = 2;
+		}
+		else
+		{
+			if (errno == ERANGE
+				|| Double > static_cast<double>(INT_MAX)
+				|| Double < static_cast<double>(INT_MIN))
+				Int_ov_underflow = 1;
+			if (Double > static_cast<double>(CHAR_MAX)
+				|| Double < static_cast<double>(CHAR_MIN))
+				Char_ov_underflow = 1;
+		}
 		Char = static_cast<char>(Double);
 		Float = static_cast<float>(Double);
 		Int = static_cast<int>(Double);
 	}
 	else if (type == FLOAT)
 	{
-		//check overflow
-		Float = strtof(arg, NULL);
+		Float = strtof(str_arg.c_str(), NULL);
+		if (str_arg == "-inff" || str_arg == "+inff" || str_arg == "nanf")
+		{
+			Int_ov_underflow = 2;
+			Char_ov_underflow = 2;
+		}
+		else
+		{
+			if (Float > static_cast<float>(CHAR_MAX)
+				|| Float < static_cast<float>(CHAR_MIN))
+				Char_ov_underflow = 1;
+			if (errno == ERANGE
+				|| Float > static_cast<float>(INT_MAX)
+				|| Float < static_cast<float>(INT_MIN))
+				Int_ov_underflow = 1;
+		}
 		Char = static_cast<char>(Float);
 		Double = static_cast<double>(Float);
 		Int = static_cast<int>(Float);
 	}
-	else if (type == CHAR)
+	else
 	{
-		Char = arg[0];
+		Char = str_arg.c_str()[0];
 		Float = static_cast<float>(Char);
 		Double = static_cast<double>(Char);
 		Int = static_cast<int>(Char);
 	}
-	if (Char != 0)
+	//print char
+	if (!Char_ov_underflow && isprint(Char))
 		std::cout	<< "char: '" << Char << "'" << std::endl;
-	else
-		std::cout	<< "Non displayable" << std::endl;
-	std::cout	<< "int: " << Int << std::endl
-				<< "float: " << std::fixed << std::setprecision(1) << Float << "f" << std::endl
+	else if (!Char_ov_underflow && !isprint(Char))
+		std::cout	<< "char: Non displayable" << std::endl;
+	else if (Char_ov_underflow == 1)
+		std::cout	<< "char: over/underflow" << std::endl;
+	else if (Char_ov_underflow == 2)
+		std::cout	<< "int: impossible" << std::endl;
+
+	//print int
+	if (!Int_ov_underflow)
+		std::cout	<< "int: " << Int << std::endl;
+	else if (Int_ov_underflow == 1)
+		std::cout	<< "int: over/underflow" << std::endl;
+	else if (Int_ov_underflow == 2)
+		std::cout	<< "int: impossible" << std::endl;
+	//print others
+	std::cout	<< "float: " << std::fixed << std::setprecision(1)
+				<< Float << "f" << std::endl
 				<< "double: " << Double << std::endl;
 }
 
@@ -156,8 +207,6 @@ int	main(int ac, char *av[])
 		std::cout << "Wrong arg count!" << std::endl;
 		return (1);
 	}
-	std::cout << "size of long int : " << sizeof(long int) << std::endl;
-	std::cout << "size of int : " << sizeof(int) << std::endl;
 	int	type = get_type(av[1]);
 	if (type == ERROR)
 		return (1);

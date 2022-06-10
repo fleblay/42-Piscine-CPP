@@ -185,7 +185,7 @@ void	display(int type, char *arg)
 	else if (Char_ov_underflow == 1)
 		std::cout	<< "char: over/underflow" << std::endl;
 	else if (Char_ov_underflow == 2)
-		std::cout	<< "int: impossible" << std::endl;
+		std::cout	<< "char: impossible" << std::endl;
 
 	//print int
 	if (!Int_ov_underflow)

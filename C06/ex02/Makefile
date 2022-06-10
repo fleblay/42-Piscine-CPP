@@ -12,7 +12,7 @@ OBJS		= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRCS))
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 CPP			= c++
 
-NAME		= convert
+NAME		= true
 
 all	: $(NAME)
 

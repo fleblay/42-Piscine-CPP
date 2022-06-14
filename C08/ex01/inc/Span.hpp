@@ -16,9 +16,13 @@ class Span
 
 	Span	&operator=(const Span &rhs);
 
-	void			addNumber(const int &number);
-	unsigned int	shortestSpan(void) const;	
-	unsigned int	longestSpan(void) const;	
+	int						getValue(const unsigned int &index) const;
+	unsigned int			getValueSize(void) const;
+	void					addNumber(const int &number);
+	unsigned int			shortestSpan(void) const;	
+	unsigned int			longestSpan(void) const;	
+	void					fillSpan(std::vector<int>::iterator begin,
+								std::vector<int>::iterator end);
 
 	private	:
 	

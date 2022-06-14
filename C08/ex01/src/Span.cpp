@@ -99,8 +99,10 @@ void			Span::fillSpan(std::vector<int>::iterator begin,
 		throw(std::runtime_error("Maximum Span capacity already reached!"));
 	if (std::distance(begin, end) == 0)
 		throw(std::runtime_error("Iterator range is 0!"));
-	if (static_cast<unsigned long>(std::abs(std::distance(begin, end))) > this->_size - this->_value.size())
+	if (static_cast<unsigned long>(std::abs(std::distance(begin, end)))
+		> this->_size - this->_value.size())
 		throw(std::runtime_error("Iterator range is bigger than available space!"));
+
 	this->_value.insert(this->_value.end(), begin, end);
 }
 

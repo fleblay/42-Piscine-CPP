@@ -15,7 +15,9 @@ int main(void)
 	std::cout << "longest span : " << mySpan.longestSpan() << std::endl;
 	std::cout << "shortest span : " << mySpan.shortestSpan() << std::endl;
 
+	Span	mySpan2(mySpan);
 	std::cout << mySpan;
+	std::cout << mySpan2;
 
 	std::cout << "------------------------------------" << std::endl;
 	std::vector<int>	v(50, 10);

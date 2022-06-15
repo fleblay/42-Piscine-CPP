@@ -18,8 +18,7 @@ Span::Span(const unsigned int &n) : _size(n)
 
 Span::Span(const Span &src)
 {
-	if (this == &src)
-		return ;
+	std::cout << "Copy span constructor called ";
 	*this = src;
 }
 

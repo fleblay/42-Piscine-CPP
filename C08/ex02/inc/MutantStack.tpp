@@ -34,6 +34,8 @@ template <typename T>
 MutantStack<T>	&MutantStack<T>::operator=(const MutantStack<T> &rhs)
 {
 	std::cout << "MutantStack assign operator overloard called" << std::endl;
+	if (this == &rhs)
+		return (*this);
 	this->std::stack<T>::operator=(rhs);
 	return (*this);
 }

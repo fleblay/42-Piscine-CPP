@@ -1,4 +1,5 @@
 #include "MutantStack.hpp"
+#include <cstdio>
 
 int main(void)
 {
@@ -7,7 +8,7 @@ int main(void)
 	mstack.push(5);
 	mstack.push(17);
 
-	std::cout << "first element is : " << mstack.top() << std::endl;
+	DEBUG && std::cout << "\x1b[33mfirst element is : \x1b[0m" << mstack.top() << std::endl;
 	mstack.pop();
 
 	std::cout << "the stack size is now : " << mstack.size() << std::endl;

@@ -1,6 +1,11 @@
 #ifndef MUTANTSTACK_H
 # define MUTANTSTACK_H
 
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
+
+
 # include <stack>
 
 template <typename T>
